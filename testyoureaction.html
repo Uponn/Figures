@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        #para {
+            color: bold;
+        }
+        #colorpad {
+            position: relative;
+            display: none;
+            /* transition-delay: 1s; */
+        }
+        
+    </style>
+    
+    </head>
+<body>
+   <h1>Test you reactions!</h1>
+   <p id = "para">Click on the elemets as fast as possible.</p>
+   <p>Your time is: <span id ="timeTaken"></span></p>
+   <div id="colorpad" style="width:200px;height:200px;background-color:rgb(238, 0, 0)"></div>
+
+
+    <script type="text/javascript">
+        function getRandomColor() {
+            var letters = '0123456789ABCDEF';
+            var color = '#';
+            for (var i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+            
+        }
+
+
+
+// function setRandomColor() {
+//   $("#colorpad").css("background-color", getRandomColor());
+// }
+// const displayForm = () => {
+//     setTimeout(function() {
+//     }, 3000)
+// }
+   
+    // document.getElementById("colorpad").addEventListener('click', displayForm)
+        function shapeApear() {
+            document.getElementById("colorpad").style.backgroundColor = getRandomColor();
+            document.getElementById("colorpad").style.width = Math.floor((Math.random()*200)+100) + "px";
+            document.getElementById("colorpad").style.height = Math.floor((Math.random()*200)+100) + "px";
+            document.getElementById("colorpad").style.top = Math.floor( Math.random() * 400 ) + "px";
+            document.getElementById("colorpad").style.left = Math.floor( Math.random() * 400 ) + "px";
+            document.getElementById("colorpad").style.display = "block";
+            if(Math.random() > 0.5){
+                document.getElementById("colorpad").style.borderRadius = "50%";
+            }else {
+                document.getElementById("colorpad").style.borderRadius = "0";
+            }
+            start = new Date().getTime();
+        }
+       function apearAfterDelay() {
+           setTimeout(shapeApear, Math.random() *2000);
+
+       }
+       apearAfterDelay();
+       document.getElementById("colorpad").onclick = function() {
+                document.getElementById("colorpad").style.display = "none";
+                var end = new Date().getTime();
+                var timeTaken = (end - start) / 100;
+                document.getElementById("timeTaken").innerHTML = timeTaken + "s";
+                apearAfterDelay();
+             }
+             
+       
+    
+    
+
+
+
+
+    </script>
+</body>
+</html>
